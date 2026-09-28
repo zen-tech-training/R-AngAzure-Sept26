@@ -1,0 +1,86 @@
+Task for 29th Sept 2026:
+
+Use the following Online JavaScript Compiler to complete the exercises:
+
+https://www.programiz.com/javascript/online-compiler/
+
+===================================================
+Write JavaScript programs for the following:
+
+1. Print "Hello World!" in the console using:
+console.log("Hello World!");
+
+2. Find the factorial of a given number.
+
+3. Find the square of a given number.
+
+4. Find the length of a given string.
+
+5. Reverse the following string:
+I am a JS Developer
+
+6. Find the number of characters in each word of a given sentence.
+Example:
+Input:
+"I am a JS Developer"
+Output:
+[1, 2, 1, 2, 9]
+
+7. Create 20 additional simple JavaScript programs based on arrays and strings.
+
+8. Count the vowels in a string
+Write a program to count the number of vowels (a, e, i, o, u) in a given string.
+Example:
+ Input: "JavaScript"
+ Output: 3
+
+9. Check whether a string is a palindrome
+A palindrome reads the same forward and backward.
+Example:
+ Input: "madam"
+ Output: true
+
+10. Convert a string to uppercase
+Example:
+ Input: "hello javascript"
+ Output: "HELLO JAVASCRIPT"
+
+11. Find the largest number in an array
+Example:
+ Input: [10, 25, 5, 40, 15]
+ Output: 40
+
+12. Find the smallest number in an array
+Example:
+ Input: [10, 25, 5, 40, 15]
+ Output: 5
+
+13. Calculate the sum of all numbers in an array
+Example:
+ Input: [10, 20, 30, 40]
+ Output: 100
+
+14. Find all even numbers in an array
+Example:
+ Input: [1, 2, 3, 4, 5, 6]
+ Output: [2, 4, 6]
+
+15. Remove duplicate values from an array
+Example:
+ Input: [1, 2, 2, 3, 3, 4, 5]
+ Output: [1, 2, 3, 4, 5]
+
+16. Count the number of words in a sentence
+Example:
+ Input: "I am learning JavaScript"
+ Output: 4
+
+17. Find the longest word in a sentence
+Example:
+ Input: "I am a JavaScript Developer"
+ Output: "JavaScript"
+
+18. Find the second largest number from the number list
+Example:
+ Input: [101, -90, 90, 89, 89, 67, 45]
+ Output: 67
