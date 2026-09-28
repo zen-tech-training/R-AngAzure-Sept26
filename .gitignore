@@ -1,0 +1,31 @@
+
+# ==================================================
+# Frontend (Angular) Rules
+# ==================================================
+# Node modules and package locks
+ops-frontend/node_modules/
+ops-frontend/package-lock.json
+ops-frontend/.env
+
+# Compiled output
+ops-frontend/dist/
+ops-frontend/tmp/
+ops-frontend/out-tsc/
+ops-frontend/bazel-out/
+
+# Environments / Secrets
+.env
+.env.local
+.env.*
+
+# Cache and logs
+ops-frontend/.angular/cache/
+ops-frontend/.sass-cache/
+ops-frontend/connect.lock
+ops-frontend/coverage/
+ops-frontend/libpeerconnection.log
+ops-frontend/testem.log
+ops-frontend/typings/
+ops-frontend/__screenshots__/
+ops-frontend/npm-debug.log
+ops-frontend/yarn-error.log

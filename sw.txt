@@ -1,0 +1,28 @@
+
+1. VS Code editor
+https://code.visualstudio.com/download
+VSCodeUserSetup-x64-1.125.1.exe - 187909 KB
+==========================================================
+
+2. Nodejs (Angular or React development)
+https://nodejs.org/en/download
+node-v24.17.0-x64.msi - 32060 KB
+
+Angular CLI: npm install -g @angular/cli
+
+==========================================================
+
+3. MongoDb with MongoDb compass
+https://www.mongodb.com/try/download/community
+
+MongoDB Community Server Download -> Select package -> Choose 8.3.11, windows, .msi -> Click on Download button
+Integrated Installer (Windows): When you run the .msi installer for the MongoDB Community Server, 
+you will be presented with an option to "Install MongoDB Compass". If this checkbox is selected, the installer will automatically download and install Compass along with the database server.
+
+Prefer this option: MongoDB Community Server (Includes Compass option): https://www.mongodb.com/try/download/community
+MongoDB Compass (Standalone GUI): https://www.mongodb.com/try/download/compass 
+
+==========================================================
+4. GitHub
+https://git-scm.com/install/windows
+Git-2.54.0-64-bit.exe - 63649 KB

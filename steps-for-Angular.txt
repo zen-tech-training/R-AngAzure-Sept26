@@ -1,0 +1,66 @@
+
+Angular Project
+
+================================================== Installation ==================================================
+Installation
+
+C:\> node -v
+v24.19.0
+
+C:\>npm -v
+11.17.0
+
+https://www.npmjs.com/
+
+
+C:\>npm install -g @angular/cli
+
+C:\>ng version
+
+Angular CLI       : 22.2.0
+Node.js           : 24.19.0
+Package Manager   : npm 11.17.0
+Operating System  : win32 x64
+
+
+
+Set Env variable for your account
+path:  C:\Users\YourUserName\AppData\Roaming\npm
+
+Restart the command prompt
+
+
+================================================== Create Angular Project ========================================
+
+C:\Users\.....\Projects\mean\R-AngAzure-Sept26>
+
+ng new ops-frontend --routing --style=scss --standalone=true
+
+Would you like to share pseudonymous usage - No
+SSR, SSG - No
+Zoneless - Yes (It did not ask)
+AI Tool  - Github Copilot (I have chosen None option)
+
+
+To Run the project
+cd projectDirectory
+C:\Projects\angular\projectName> ng serve --open
+or
+ng s
+
+
+Final Summary of Choices:
+Prompt				Our Choice		Reason
+Angular Routing			Yes			Needed for modular navigation
+Stylesheet Format		SCSS			Better for Bootstrap and modular styles
+Standalone Components		Yes			No need of NgModules
+Angular AI Toolkit		None			--
+
+Your angular application will run on 
+http://localhost:4200/
+
+
+
+==========================================
+cd C:\Users\.......\ops-frontend\src\app\components>
+ng generate component GetDataFromApi --standalone
