@@ -64,3 +64,5 @@ http://localhost:4200/
 ==========================================
 cd C:\Users\.......\ops-frontend\src\app\components>
 ng generate component GetDataFromApi --standalone
+
+ng generate component GetDataFromApiModular --standalone

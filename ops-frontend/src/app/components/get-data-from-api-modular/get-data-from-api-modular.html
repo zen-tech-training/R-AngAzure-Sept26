@@ -1,0 +1,16 @@
+<p>get-data-from-api-modular works!</p>
+
+<button (click)="fetchUsers()">
+  Fetch Users
+</button>
+<ul>
+    <li>
+        <div *ngIf="isLoading()">Loading...</div>
+        <div *ngIf="!isLoading() && users().length === 0">No users found.</div>
+        <ul *ngIf="!isLoading() && users().length > 0">
+            <li *ngFor="let user of users()">
+                {{ user.username }} - {{ user.email }}
+            </li>
+        </ul>
+    </li>
+</ul>

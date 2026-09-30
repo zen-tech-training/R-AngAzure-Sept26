@@ -1,9 +1,10 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { GetDataFromApi } from './components/get-data-from-api/get-data-from-api';
+import { GetDataFromApiModular } from './components/get-data-from-api-modular/get-data-from-api-modular';
 
 @Component({
-  imports: [RouterOutlet, GetDataFromApi],
+  imports: [RouterOutlet, GetDataFromApi, GetDataFromApiModular],
   selector: 'app-root',
   styleUrl: './app.scss',
   templateUrl: './app.html',
