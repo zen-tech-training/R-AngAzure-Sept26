@@ -1,1 +1,31 @@
+<!-- <p>get-data-from-api works!</p>
+<button (click)="getUsers()">Get Users</button>
+<ul>
+  <li *ngFor="let user of users">
+    {{ user.name }} - {{ user.email }}
+  </li>
+</ul> -->
+
 <p>get-data-from-api works!</p>
+
+<button (click)="loadUsers()">
+  Get Users
+</button>
+
+<p style="color:red">{{ errorMessage }}  </p>
+<p *ngIf="errorMessage()">
+  {{ errorMessage() }}
+</p>
+
+<ul>
+  <li *ngFor="let user of users()">
+    {{ user.name }} - {{ user.email }}
+  </li>
+</ul>
+
+
+<ul>
+  <!-- <li *ngFor="let user of users">
+    {{ user.name }} - {{ user.email }}
+  </li> -->
+</ul>
