@@ -1,0 +1,161 @@
+<!-- Filepath: ops-frontend/src/app/components/navbar/navbar.html -->
+
+<mat-toolbar class="ops-navbar">
+  <!-- Brand Logo & Title -->
+  <div class="brand" routerLink="/">
+    <mat-icon>inventory_2</mat-icon>
+    <span>OPS</span>
+  </div>
+
+  <span class="spacer"></span>
+
+  <!-- Desktop Navigation Items (Hidden on mobile) -->
+  <div class="nav-items desktop-only">
+    <a
+      mat-button
+      routerLink="/"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <mat-icon>home</mat-icon> Home
+    </a>
+
+    <!-- Angular Basics Dropdown -->
+    <button mat-button [matMenuTriggerFor]="angularBasicsMenu">
+      <mat-icon>code</mat-icon>
+      Angular Basics
+      <mat-icon>arrow_drop_down</mat-icon>
+    </button>
+    <!-- Main Dropdown Menu -->
+    <mat-menu #angularBasicsMenu="matMenu">
+      <!-- 1, 2, 3: Top Links -->
+      <a
+        mat-menu-item
+        *ngFor="let item of basicsTopLinks"
+        [routerLink]="item.path"
+        routerLinkActive="active-menu"
+      >
+        <span>{{ item.label }}</span>
+      </a>
+
+      <!-- 4th Item: Nested Sub-Menu Trigger for Parent-Child Communication -->
+      <!-- Desktop Sub-menu Trigger -->
+      <button mat-menu-item [matMenuTriggerFor]="componentCommMenu">
+        <span>Component Communication</span>
+        <mat-icon matMenuItemSuffix>chevron_left</mat-icon>
+      </button>
+
+      <mat-divider></mat-divider>
+
+      <!-- 5th+ Links: Pipes, RxJs, etc. -->
+      <a
+        mat-menu-item
+        *ngFor="let item of basicsBottomLinks"
+        [routerLink]="item.path"
+        routerLinkActive="active-menu"
+      >
+        <span>{{ item.label }}</span>
+      </a>
+    </mat-menu>
+
+    <!-- Nested Sub-Menu for Component Communication -->
+    <mat-menu #componentCommMenu="matMenu">
+      <a
+        mat-menu-item
+        *ngFor="let comm of communicationLinks"
+        [routerLink]="comm.path"
+        routerLinkActive="active-menu"
+      >
+        <span>{{ comm.label }}</span>
+      </a>
+    </mat-menu>
+
+    <!-- <mat-menu #angularBasicsMenu="matMenu">
+      <a mat-menu-item *ngFor="let item of angularBasicsLinks" [routerLink]="item.path" routerLinkActive="active-menu">
+        <span>{{ item.label }}</span>
+      </a>
+    </mat-menu> -->
+
+    <a mat-button routerLink="/login" routerLinkActive="active">
+      <mat-icon>login</mat-icon> Login
+    </a>
+
+    <!-- Theme Toggler Button -->
+    <button
+      mat-icon-button
+      (click)="toggleTheme()"
+      [title]="isGreyGreenTheme() ? 'Switch to Blue Theme' : 'Switch to Grey-Green Theme'"
+    >
+      <mat-icon>{{ isGreyGreenTheme() ? 'palette' : 'dark_mode' }}</mat-icon>
+    </button>
+  </div>
+
+  <!-- Mobile Hamburger Button & Theme Toggle (Visible only on small screens) -->
+  <div class="mobile-only">
+    <button
+      mat-icon-button
+      (click)="toggleTheme()"
+      [title]="isGreyGreenTheme() ? 'Switch Theme' : 'Switch Theme'"
+    >
+      <mat-icon>{{ isGreyGreenTheme() ? 'palette' : 'dark_mode' }}</mat-icon>
+    </button>
+
+    <button mat-icon-button [matMenuTriggerFor]="mobileMenu" aria-label="Toggle navigation menu">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+
+  <!-- Mobile Hamburger Dropdown Menu -->
+  <mat-menu #mobileMenu="matMenu" xPosition="before">
+    <a
+      mat-menu-item
+      routerLink="/"
+      routerLinkActive="active-menu"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <mat-icon>home</mat-icon>
+      <span>Home</span>
+    </a>
+
+    <button mat-menu-item [matMenuTriggerFor]="mobileAngularBasicsMenu">
+      <mat-icon>code</mat-icon>
+      <span>Angular Basics</span>
+    </button>
+
+    <a mat-menu-item routerLink="/login" routerLinkActive="active-menu">
+      <mat-icon>login</mat-icon>
+      <span>Login</span>
+    </a>
+  </mat-menu>
+
+  <!-- Submenu for Angular Basics in Mobile View -->
+  <mat-menu #mobileAngularBasicsMenu="matMenu">
+    <a
+      mat-menu-item
+      *ngFor="let item of basicsTopLinks"
+      [routerLink]="item.path"
+      routerLinkActive="active-menu"
+    >
+      <span>{{ item.label }}</span>
+    </a>
+
+    <!-- Mobile Sub-menu Trigger -->
+    <button mat-menu-item [matMenuTriggerFor]="componentCommMenu">
+      <span>Component Communication</span>
+      <mat-icon matMenuItemSuffix>chevron_right</mat-icon>
+    </button>
+   
+
+    <mat-divider></mat-divider>
+
+    <!-- Bottom Links (Pipes, RxJS, Forms, etc.) -->
+    <a
+      mat-menu-item
+      *ngFor="let item of basicsBottomLinks"
+      [routerLink]="item.path"
+      routerLinkActive="active-menu"
+    >
+      <span>{{ item.label }}</span>
+    </a>
+  </mat-menu>
+</mat-toolbar>

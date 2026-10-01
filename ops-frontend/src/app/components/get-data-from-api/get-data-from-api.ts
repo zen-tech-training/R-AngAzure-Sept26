@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-get-data-from-api',
+  selector: 'get-data-from-api',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './get-data-from-api.html',

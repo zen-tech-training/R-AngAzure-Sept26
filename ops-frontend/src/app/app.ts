@@ -3,9 +3,10 @@ import { RouterOutlet } from '@angular/router';
 import { GetDataFromApi } from './components/get-data-from-api/get-data-from-api';
 import { GetDataFromApiModular } from './components/get-data-from-api-modular/get-data-from-api-modular';
 import { SimpleMaterialUI } from './components/simple-material-ui/simple-material-ui';
+import { Navbar } from './components/navbar/navbar';
 
 @Component({
-  imports: [RouterOutlet, GetDataFromApi, GetDataFromApiModular, SimpleMaterialUI],
+  imports: [RouterOutlet, GetDataFromApi, GetDataFromApiModular, SimpleMaterialUI, Navbar],
   selector: 'app-root',
   styleUrl: './app.scss',
   templateUrl: './app.html',
