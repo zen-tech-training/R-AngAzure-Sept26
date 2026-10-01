@@ -30,10 +30,12 @@ export class Navbar {
 
   // Top 3 Items
   basicsTopLinks = [
-    { label: 'Property Binding', path: '/angular-basics/property-binding' },
-    { label: 'Event Binding', path: '/angular-basics/event-binding' },
-    { label: 'Two-Way Binding', path: '/angular-basics/twoway-binding' },
-    { label: 'SMu', path: '/smu' }
+    // { label: 'Property Binding', path: '/angular-basics/property-binding' },
+    // { label: 'Event Binding', path: '/angular-basics/event-binding' },
+    // { label: 'Two-Way Binding', path: '/angular-basics/twoway-binding' },
+    { label: 'Simple Material UI', path: '/smu' },
+    { label: 'Get Data From API', path: '/gdfa' },
+    { label: 'Get Data From API Modular', path: '/gdfam' }
   ];
 
   // 4th Item Sub-menu Options (Component Communication)
