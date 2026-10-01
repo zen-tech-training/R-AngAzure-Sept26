@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tailwind CSS CDN Demo</title>
+  
+  <!-- 1. Load the official Tailwind CSS Play CDN Script -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  
+  <!-- 2. (Optional) Customization via Standard CSS Variables -->
+  <style type="text/theme">
+    @theme {
+      --color-brand-primary: #4f46e5;
+      --color-brand-hover: #4338ca;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex items-center justify-center p-6">
+
+  <!-- Demo Interactive Card Component -->
+  <div class="max-w-md w-full bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden transform transition duration-300 hover:scale-102">
+    
+    <!-- Header Accent -->
+    <div class="h-3 bg-brand-primary"></div>
+    
+    <div class="p-8">
+      <!-- Badge -->
+      <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-indigo-50 text-brand-primary">
+        CDN Sandbox v4
+      </span>
+      
+      <!-- Title & Description -->
+      <h1 class="text-2xl font-bold mt-4 tracking-tight">
+        Tailwind CSS is Working! 🎉
+      </h1>
+      <p class="mt-3 text-slate-600 leading-relaxed">
+        This component is styled completely using utility classes loaded through a single browser script tag. No build pipeline required.
+      </p>
+      
+      <!-- Feature Tags -->
+      <div class="mt-6 flex flex-wrap gap-2">
+        <span class="text-xs bg-slate-100 px-2.5 py-1 rounded-md font-mono text-slate-600">@tailwindcss/browser</span>
+        <span class="text-xs bg-slate-100 px-2.5 py-1 rounded-md font-mono text-slate-600">JIT Compilation</span>
+        <span class="text-xs bg-slate-100 px-2.5 py-1 rounded-md font-mono text-slate-600">Flexbox Layout</span>
+      </div>
+      
+      <!-- Call to Action Button using Custom Theme Color -->
+      <div class="mt-8">
+        <button class="w-full bg-brand-primary hover:bg-brand-hover text-white font-medium py-3 px-4 rounded-xl shadow-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-offset-2">
+          Explore Component Playground
+        </button>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
