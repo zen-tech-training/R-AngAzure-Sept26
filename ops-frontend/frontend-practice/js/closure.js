@@ -47,14 +47,35 @@ function outerFun(ctr){
     
     function innerFun(){
         counter++;  //counter = counter + 1;        
-        console.log("Current Counter value: ", counter);
-        // return counter;      
+        // console.log("Current Counter value: ", counter);
+        return counter;      
     }
     return innerFun;
 }
 let innerFuncRef = outerFun(1005);
-innerFuncRef();
-innerFuncRef();
-innerFuncRef();
-innerFuncRef();
-// console.log(counterResult);
+innerFuncRef(); //1006
+innerFuncRef(); //1007
+innerFuncRef(); //1008
+innerFuncRef(); //1009
+console.log(innerFuncRef());//1010
+
+
+console.log("----------------- Closure v4 -----------------------");
+function f6(empArr){
+    const originalEmpArray = empArr;
+    var filteredEmpArray = [];
+    
+    function ageWiseFilter(age){
+        filteredEmpArray = [];
+        for(let i=0;i<originalEmpArray.length;i++){
+            if(originalEmpArray[i].age > age)
+                filteredEmpArray.push(originalEmpArray[i]);
+        }
+        return filteredEmpArray;          
+    }
+    return ageWiseFilter;
+}
+const innerFuncRefAgeWiseFilter = f6(empArr);
+console.log("First Call:", innerFuncRefAgeWiseFilter(20));
+console.log("Second Call:", innerFuncRefAgeWiseFilter(10));
+
