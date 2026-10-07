@@ -64,3 +64,8 @@ result = arf4(10);
 console.log("Type 4 Arrow Function: ", result);
 result = arf4("Tom");
 console.log("Type 4 Arrow Function: ", result);
+
+
+for(k=0; k<10; k++){
+    console.log("k", k);
+}
