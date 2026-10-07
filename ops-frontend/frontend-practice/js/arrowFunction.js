@@ -69,3 +69,43 @@ console.log("Type 4 Arrow Function: ", result);
 for(k=0; k<10; k++){
     console.log("k", k);
 }
+
+//============================= this keyword
+// A regular object acting as our execution context
+const name="Bob";
+const developer = {
+  name: "Alice",
+  skills: ["JavaScript", "React"],
+
+  // 1. ORDINARY (REGULAR) FUNCTION
+  showSkillsRegular: function() {
+    console.log(`Regular function context (outer): ${this.name}`); // Works: "Alice"
+
+    // Inside a callback (like setTimeout), the context is lost!
+    setTimeout(function() {
+      // In non-strict mode, 'this' defaults to the Global/Window object
+      console.log(`Regular function callback (inner): ${this.name} --- ${developer.name}`); 
+    }, 100);
+  },
+
+  // 2. ARROW FUNCTION
+  showSkillsArrow: function() {
+    console.log(`Arrow function context (outer): ${this.name}`); // Works: "Alice"
+    // Arrow functions inherit 'this' from the outer showSkillsArrow method
+    setTimeout(() => {
+      console.log(`Arrow function callback (inner): ${this.name} --- ${developer.name}`); 
+    }, 100);
+  }
+};
+
+// --- Execution ---
+console.log("--- Testing Ordinary Function ---");
+developer.showSkillsRegular();
+
+setTimeout(() => {
+  console.log("\n--- Testing Arrow Function ---");
+  developer.showSkillsArrow();
+}, 200);
+
+
+
