@@ -10,15 +10,32 @@
   <script>
     function saveData(){
       //API request to save data
-      document.getElementById("successMsg").innerHTML = "Data saved successfully!";
+      document.getElementById("successMsg").innerHTML = "<b>Data saved successfully!</b>";
       document.getElementById("successMsg").style.display = "block";
       document.getElementById("successMsg").style.color = "green";
+
+      document.getElementById("msgTwo").innerText = "<b>Data saved successfully!</b>";
 
       setTimeout(function(){
         document.getElementById("successMsg").innerText = "none";
         document.getElementById("successMsg").style.display = "none";
       }, 3000);
     }
+
+    const saveDataInStorage = () => {
+      const authObject = { id:1, name:"Tom", jwt:"eyyhxvshvhvxvhs.hxshxh.xhsghghg"}
+      localStorage.setItem("Key1", "Value1");
+      localStorage.setItem("Key2", JSON.stringify(authObject));
+
+      sessionStorage.setItem('My Session key', "45454HGHG%#%#$#$ghghgh7878");
+    }
+
+
+    const logout = () => {
+      localStorage.clear();
+      sessionStorage.clear();
+    }
+    
   </script>
 <body>
 
@@ -27,12 +44,15 @@
   <p>This part is inside a .container class.</p>
   <p>The .container class provides a responsive fixed width container.</p>
   <div id="successMsg" style="display:none">Dummmmmmmy divvvvvv</div>
+  <div id="msgTwo">Message: </div>
 </div>
 
 <div class="container">
     <button class="btn btn-success">Ok</button>
     <button class="btn btn-danger">Delete</button>
     <button class="btn btn-primary" onclick="saveData()"> Save</button>
+    <button class="btn btn-warning" onclick="saveDataInStorage()">Add Data inside storage</button>
+    <button class="btn btn-danger" onclick="logout()">LOGOUT</button>
 </div>
 
 </body>
