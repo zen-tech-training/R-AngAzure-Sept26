@@ -1,0 +1,966 @@
+Create a repo in git hub "angular-azure-A-oct26"
+
+
+C:\Projects\angular\azure>ng new angular-azure-A-oct26
+
+C:\Projects\angular\azure\angular-azure-A-oct26>ng s
+
+C:\Projects\angular\azure\angular-azure-A-oct26>ng build
+
+Output location: C:\Projects\angular\azure\angular-azure-A-oct26\dist\angular-azure-A-oct26
+
+
+============ .gitignore file
+# Secrets & Local Environments
+.env
+.env.local
+*.secret
+
+# Logs
+*.log
+
+# Compiled output
+/dist
+/tmp
+/out-tsc
+/bazel-out
+
+# Node
+/node_modules
+
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/mcp.json
+.history/*
+
+# Angular & Build Tools
+/.angular
+/.angular/cache
+.sass-cache/
+/connect.lock
+/coverage
+/typings
+__screenshots__/
+
+# System files
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+ehthumbs.db
+
+=====================
+
+C:\Projects\angular\azure\angular-azure-A-oct26>git init
+C:\Projects\angular\azure\angular-azure-A-oct26>git add .
+C:\Projects\angular\azure\angular-azure-A-oct26>git commit -m "Ang v1"
+C:\Projects\angular\azure\angular-azure-A-oct26>git branch -M main
+C:\Projects\angular\azure\angular-azure-A-oct26>git remote add origin https://github.com/rgbhoir/angular-azure-A-oct26.git
+C:\Projects\angular\azure\angular-azure-A-oct26>git push -u origin main
+
+====================
+========================================================================= Through Azure Wizard 
+Azure portal -> Static Web App -> Create
+
+Summary
+Static Web App
+by Microsoft
+
+Details
+Subscription : 182d0b7e-c5b8-4715-875e-9e8e7447f690 (OLD)
+4d20a943-4b33-4037-90c1-d4c5ce37f124 
+Resource Group: RG1 (OLD) RG3
+Name: ops-ui 
+Plan type: Free / Standard : Free is selected
+
+Deployment: GitHub
+Github Account: rgbhoir (Need authorization)
+Organization: rgbhoir
+Repository: https://github.com/rgbhoir/angular-azure-demo-oct26 (OLD)
+Repository: https://github.com/rgbhoir/angular-azure-A-oct26 (New)
+Branch: main
+
+Build Details:
+Build Presets: Angular
+App location: /
+API location: 
+Output location: dist/ops-frontend/browser   - dist/angular-azure-A-oct26/browser - dist/angular-azure-demo-B-oct26/browser
+Deployment authorization policy: Deployment token
+
+Region: eastasia
+
+Tags
+Owner: Rupesh
+
+After Deployment:
+https://brave-flower-0f2c40500.1.azurestaticapps.net
+https://purple-water-0c2925800.5.azurestaticapps.net
+
+======== Modify the angular project code
+Modify src/app/app.html 
+
+<h1>Welcome to the Angular App!</h1>
+<router-outlet />
+
+C:\Projects\angular\azure\angular-azure-A-oct26>git pull
+C:\Projects\angular\azure\angular-azure-A-oct26>git add .
+C:\Projects\angular\azure\angular-azure-A-oct26>git commit -m "Ang v2"
+C:\Projects\angular\azure\angular-azure-A-oct26>git push
+
+CICD runs automatically on GitHub.com
+
+After successful CICD run, visit the https://brave-flower-0f2c40500.1.azurestaticapps.net
+
+If u get conflict error:
+So
+One VM(Linux based) editor will be opened
+Press "Esc" Key
+Then Press ":wq"
+Then Press Enter key
+
+
+Then run Git pull and then git push command
+
+========
+Azure portal
+Web application firewall policies (WAF)
+
+Basics:
+Policy for: Global
+Front door tier: Premium
+Subscription: Subscription 1 (OLD) - Subscription 3 - Subscription 4
+Resource Group: angular-static-web-app_group (old) - RG3 - RG4
+
+Instance details:
+Name: waf1
+Resource group resgion: centralus (OLD) - southindia
+Enable policy: Ticked
+Policy mode: Prevention
+
+
+Managed rules (Comes by default)
+Default ruleset: Microsoft_DefaultRuleSet_2.2
+Additional ruleset: Microsoft_BotManagerRuleSet_1.1
+Http DDoS ruleset: None
+
+Policy settings:
+Inspect request body: Enabled
+Association
+Number of associations: 0
+
+======
+Third Azure Resource: 
+Create a Front Door and CDN profiles from Marketplace
+Choose Azure Front Door
+Subscription: Subscription 2 (Microsoft.cdn registered) (OLD)- Subscription 3 - 4
+
+(To register:
+Subscription 1 | Resource providers
+Subscription 1 -> Settings -> Resource Provider -> Search for "microsoft.cdn" -> Select the radio button -> Click Register button
+)
+
+ 
+Resource Group: RG2 (Old)- RG3
+Location: Central India (Old) - South India
+Profile Details:
+Name: FD1
+Tier: Premium
+WAF policy: waf1
+
+Endpoint name: fa1endpoint - fd1endpoint
+fd1endpoint-g5heechmavb7ejga.z02.azurefd.net (old)
+fa1endpoint-e9g2a5adgra3h7eg.z01.azurefd.net
+fd1endpoint-g5heechmavb7ejga.z02.azurefd.net
+
+Origin type: Static Web App
+Origin host name: gentle-grass-07a238000.3.azurestaticapps.net (Old) 
+https://brave-flower-0f2c40500.1.azurestaticapps.net
+Caching: Disabled
+
+
+=====================================
+Resolution : If any token issue occurs in github CI CD:
+Static web App-> ops-ui -> Overview -> Manage deployment token -> Copy the deployment token ->
+
+Github.com -> Repo -> Settings -> Secrete and Variables -> Actions -> Environment variables -> Update the value
+
+and Re-run the failed job from 
+
+Without Front Door
+https://gentle-grass-07a238000.3.azurestaticapps.net/gdfam (Old)
+https://brave-flower-0f2c40500.1.azurestaticapps.net
+
+With Front Door (It takes 5+ minutes)
+https://fd1endpoint-g5heechmavb7ejga.z02.azurefd.net/ (Old)
+https://fa1endpoint-e9g2a5adgra3h7eg.z01.azurefd.net/
+
+https://fd1endpoint-g5heechmavb7ejga.z02.azurefd.net/
+
+==========================
+Modify  app.html
+<h1 style = "color: blue;">Welcome to the Angular App!</h1>
+<router-outlet />
+
+git pull
+git add .
+git commit -m "app v3"
+git push
+
+==========================
+Create components folder 
+
+PS C:\...\angular-azure-A-oct26\src\app\components> ng g c Navbar
+PS C:\...\angular-azure-A-oct26\src\app\components> ng g c GetData
+PS C:\...\angular-azure-A-oct26\src\app\components> ng g c Home
+PS C:\...\angular-azure-A-oct26\src\app\components> ng g c FetchDataFromAPI
+
+
+=========================
+
+//File : angular-azure-A-oct26/src/app/components/home/home.ts
+import { Component } from '@angular/core';
+
+@Component({
+  imports: [],
+  selector: 'app-home',
+  styleUrl: './home.css',
+  templateUrl: './home.html',
+})
+export class Home {}
+
+
+========
+/* File: angular-azure-A-oct26/src/app/components/home/home.css */
+.hero-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 70vh;
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #242424;
+  margin-bottom: 1rem;
+}
+
+p {
+  font-size: 1.2rem;
+  color: #616161;
+  max-width: 600px;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+.btn-primary {
+  background-color: #0078d4;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.8rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: #106ebe;
+}
+
+============
+
+<!-- File: angular-azure-A-oct26/src/app/components/home/home.html -->
+<div class="hero-container">
+  <h1>Welcome to Azure Portal Hub</h1>
+  <p>Manage, track, and monitor your cloud application infrastructure from a single dashboard interface.</p>
+  <button routerLink="/get-data" class="btn-primary">View Environment Data</button>
+</div>
+
+
+===================================
+// File : angular-azure-A-oct26/src/app/components/fetch-data-from-api/fetch-data-from-api.ts
+import { Component, OnInit, inject, signal } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+@Component({
+  selector: 'app-fetch-data-from-api',
+  standalone: true,
+  imports: [], // CommonModule is no longer needed here!
+  templateUrl: './fetch-data-from-api.html',
+  styleUrls: ['./fetch-data-from-api.css']
+})
+export class FetchDataFromAPI implements OnInit {
+  private http = inject(HttpClient);
+  
+  users = signal<any[]>([]);
+  isLoading = signal<boolean>(true);
+
+  ngOnInit(): void {
+    this.http.get<any[]>('https://jsonplaceholder.typicode.com/users')
+      .subscribe({
+        next: (data) => {
+          this.users.set(data);
+          this.isLoading.set(false);
+        },
+        error: (err) => {
+          console.error('Error fetching data:', err);
+          this.isLoading.set(false);
+        }
+      });
+  }
+}
+
+=============
+/* File: angular-azure-A-oct26/src/app/components/fetch-data-from-api/fetch-data-from-api.css */
+.api-container {
+  padding: 2rem;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h2 {
+  color: #242424;
+  margin-bottom: 0.25rem;
+}
+
+p {
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.loading-box {
+  text-align: center;
+  padding: 3rem;
+  background: #f3f2f1;
+  border-radius: 8px;
+  color: #605e5c;
+  font-weight: 500;
+}
+
+.user-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.user-card {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+}
+
+.avatar-stub {
+  width: 45px;
+  height: 45px;
+  background-color: #0078d4;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.user-card h3 {
+  margin: 0 0 0.25rem 0;
+  color: #323130;
+}
+
+.username {
+  font-size: 0.9rem;
+  color: #0078d4;
+  margin: 0 0 0.75rem 0;
+}
+
+.email {
+  font-size: 0.9rem;
+  color: #484644;
+  margin: 0 0 1.25rem 0 !important;
+}
+
+.company-tag {
+  margin-top: auto;
+  padding-top: 0.75rem;
+  border-top: 1px dashed #edebe9;
+  color: #797775;
+}
+
+================
+
+<!-- File: angular-azure-A-oct26/src/app/components/fetch-data-from-api/fetch-data-from-api.html -->
+<div class="api-container">
+  <h2>External User Registry</h2>
+  <p>Live directories synced from remote REST servers using Angular Signals and Control Flow.</p>
+
+  <!-- Modern Angular Conditional Block -->
+  @if (isLoading()) {
+    <div class="loading-box">
+      Loading production records...
+    </div>
+  } @else {
+    <!-- Modern Angular Loop Block -->
+    <div class="user-grid">
+      @for (user of users(); track user.id) {
+        <div class="user-card">
+          <div class="avatar-stub">{{ user.name.charAt(0) }}</div>
+          <h3>{{ user.name }}</h3>
+          <p class="username">&#64;{{ user.username }}</p>
+          <p class="email">✉ {{ user.email }}</p>
+          
+          <div class="company-tag">
+            <small>🏢 {{ user.company.name }}</small>
+          </div>
+        </div>
+      } @empty {
+        <div class="loading-box">No users found.</div>
+      }
+    </div>
+  }
+</div>
+
+
+============================================
+
+// File : angular-azure-A-oct26/src/app/components/get-data/get-data.ts
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+@Component({
+  selector: 'app-get-data',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './get-data.html',
+  styleUrls: ['./get-data.css']
+})
+export class GetData {
+  // Simple mock data array
+  items = [
+    { id: 1, name: 'Azure App Service Blob', status: 'Healthy' },
+    { id: 2, name: 'SQL Database Instance', status: 'Maintenance' },
+    { id: 3, name: 'Cognitive API Gateway', status: 'Healthy' }
+  ];
+}
+
+==========
+
+/* File: angular-azure-A-oct26/src/app/components/get-data/get-data.css */
+.container {
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h2 {
+  color: #323130;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.card {
+  border: 1px solid #edebe9;
+  border-radius: 6px;
+  padding: 1.5rem;
+  background-color: #faf9f8;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.85rem;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.bg-success {
+  background-color: #dff6dd;
+  color: #107c41;
+}
+
+.bg-warning {
+  background-color: #fff4ce;
+  color: #794500;
+}
+
+
+=============
+
+<!-- File: angular-azure-A-oct26/src/app/components/get-data/get-data.html -->
+<div class="container">
+  <h2>System Status Panel</h2>
+  <p>Below is the latest state retrieved from your environments:</p>
+  
+  <div class="grid">
+    <div class="card" *ngFor="let item of items">
+      <h3>{{ item.name }}</h3>
+      <span class="badge" [ngClass]="item.status === 'Healthy' ? 'bg-success' : 'bg-warning'">
+        {{ item.status }}
+      </span>
+    </div>
+  </div>
+</div>
+
+
+========================================================
+//File : angular-azure-A-oct26/src/app/app.routes.ts
+import { Routes } from '@angular/router';
+import { GetData } from './components/get-data/get-data';
+import { Home } from './components/home/home';
+
+export const routes: Routes = [
+  { path: '', component: Home }, // Redirect root URL to home
+  { path: 'get-data', component: GetData },
+  { path: 'api-data', loadComponent: () => import('./components/fetch-data-from-api/fetch-data-from-api').then(m => m.FetchDataFromAPI)},
+  { path: '**', redirectTo: '' } // Wildcard fallback
+];
+
+============================================
+
+//File : angular-azure-A-oct26/src/app/components/navbar/navbar.ts
+import { Component } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+
+@Component({
+  selector: 'app-navbar',
+  standalone: true,
+  imports: [RouterLink, RouterLinkActive],
+  templateUrl: './navbar.html',
+  styleUrls: ['./navbar.css']
+})
+export class Navbar {}
+
+
+==========
+/* File: angular-azure-A-oct26/src/app/components/navbar/navbar.css */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0078d4; /* Azure Blue */
+  padding: 1rem 2rem;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  color: #e1dfdd;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover, .nav-links a.active {
+  color: white;
+  border-bottom: 2px solid white;
+}
+
+
+==============
+<!-- File: angular-azure-A-oct26/src/app/components/navbar/navbar.html -->
+<nav class="navbar">
+  <div class="logo" routerLink="/" style="cursor: pointer;">AzureApp</div>
+  <ul class="nav-links">
+    <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+    <li><a routerLink="/get-data" routerLinkActive="active">Fetch Data</a></li>
+    <li><a routerLink="/api-data" routerLinkActive="active">API Engine</a></li>
+  </ul>
+</nav>
+
+
+====================================================
+
+// File : angular-azure-A-oct26/src/app/app.ts
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { Navbar } from './components/navbar/navbar';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [RouterOutlet, Navbar],
+  template: `
+    <app-navbar></app-navbar>
+    <router-outlet></router-outlet>
+  `
+})
+export class App {}
+
+
+=====================================
+
+//File : angular-azure-A-oct26/src/app/app.config.ts
+import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
+import { provideRouter } from '@angular/router';
+import { routes } from './app.routes';
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideBrowserGlobalErrorListeners(),
+    provideRouter(routes)
+  ]
+};
+
+
+
+
+=============================  If routing doesn't work then follow below steps. But routing work well, so I did not follow this
+Angular Client-Side Routing:
+
+Create a new file : 
+ops-frontend/staticwebapp.config.json
+
+{
+  "navigationFallback": {
+    "rewrite": "/index.html",
+    "exclude": ["/assets/*", "/*.{png,jpg,jpeg,gif,ico,css,js}"]
+  }
+}
+
+
+=============================================================================================================================================================================
+=============================================================================== Test Cases ==================================================================================
+=============================================================================================================================================================================
+//File: src/app/app.routes.spec.ts
+import { routes } from './app.routes';
+import { Home } from './components/home/home';
+import { GetData } from './components/get-data/get-data';
+import { describe, it, expect } from 'vitest';
+
+describe('App Routes', () => {
+  it('should have correct path definitions', () => {
+    expect(routes).toContainEqual(expect.objectContaining({ path: '', component: Home }));
+    expect(routes).toContainEqual(expect.objectContaining({ path: 'get-data', component: GetData }));
+    expect(routes).toContainEqual(expect.objectContaining({ path: '**', redirectTo: '' }));
+  });
+
+  it('should load FetchDataFromAPI component lazily for api-data route', async () => {
+    const apiRoute = routes.find(r => r.path === 'api-data');
+    expect(apiRoute).toBeDefined();
+    expect(apiRoute?.loadComponent).toBeDefined();
+
+    if (apiRoute?.loadComponent) {
+      const component: any = await apiRoute.loadComponent();
+      expect(component).toBeDefined();
+      // Matches both 'FetchDataFromAPI' and '_FetchDataFromAPI' generated by TS/Angular compiler
+      expect(component.name).toMatch(/FetchDataFromAPI$/);
+    }
+  });
+});
+
+==================
+
+//File: src/app/app.spec.ts
+
+import { TestBed } from '@angular/core/testing';
+import { App } from './app';
+import { provideRouter } from '@angular/router';
+import { By } from '@angular/platform-browser';
+import { Navbar } from './components/navbar/navbar';
+import { RouterOutlet } from '@angular/router';
+
+describe('App Component', () => {
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [App],
+      providers: [provideRouter([])]
+    }).compileComponents();
+  });
+
+  it('should create the app component', () => {
+    const fixture = TestBed.createComponent(App);
+    const app = fixture.componentInstance;
+    expect(app).toBeTruthy();
+  });
+
+  it('should render the app-navbar component', () => {
+    const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
+    const navbarDebugElement = fixture.debugElement.query(By.directive(Navbar));
+    expect(navbarDebugElement).not.toBeNull();
+  });
+
+  it('should contain a router-outlet', () => {
+    const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
+    const outletDebugElement = fixture.debugElement.query(By.directive(RouterOutlet));
+    expect(outletDebugElement).not.toBeNull();
+  });
+});
+
+==================
+
+//File: src/app/components/home/home.spec.ts
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Navbar } from './navbar';
+import { provideRouter } from '@angular/router';
+import { By } from '@angular/platform-browser';
+
+describe('Navbar Component', () => {
+  let component: Navbar;
+  let fixture: ComponentFixture<Navbar>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [Navbar],
+      providers: [provideRouter([])]
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(Navbar);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create Navbar component', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should display brand logo text', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    const logo = compiled.querySelector('.logo');
+    expect(logo?.textContent).toContain('AzureApp');
+  });
+
+  it('should render all 3 navigation links with correct paths', () => {
+    const links = fixture.debugElement.queryAll(By.css('.nav-links a'));
+    expect(links.length).toBe(3);
+    
+    expect(links[0].nativeElement.getAttribute('href')).toBe('/');
+    expect(links[1].nativeElement.getAttribute('href')).toBe('/get-data');
+    expect(links[2].nativeElement.getAttribute('href')).toBe('/api-data');
+  });
+});
+
+
+==================
+
+//File: src/app/components/home/home.spec.ts
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Home } from './home';
+import { provideRouter } from '@angular/router';
+import { By } from '@angular/platform-browser';
+
+describe('Home Component', () => {
+  let component: Home;
+  let fixture: ComponentFixture<Home>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [Home],
+      providers: [provideRouter([])]
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(Home);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create Home component', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should render header title', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('h1')?.textContent).toContain('Welcome to Azure Portal Hub');
+  });
+
+  it('should have a button linking to /get-data', () => {
+    const button = fixture.debugElement.query(By.css('button'));
+    expect(button.attributes['routerLink']).toBe('/get-data');
+  });
+});
+
+==================
+
+//File: src/app/components/get-data/get-data.spec.ts
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { GetData } from './get-data';
+import { By } from '@angular/platform-browser';
+
+describe('GetData Component', () => {
+  let component: GetData;
+  let fixture: ComponentFixture<GetData>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [GetData]
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(GetData);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create GetData component', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should render mock item cards', () => {
+    const cards = fixture.debugElement.queryAll(By.css('.card'));
+    expect(cards.length).toBe(component.items.length);
+  });
+
+  it('should display correct title and status badges', () => {
+    const firstCardHeading = fixture.debugElement.query(By.css('.card h3')).nativeElement;
+    const firstBadge = fixture.debugElement.query(By.css('.card .badge')).nativeElement;
+
+    expect(firstCardHeading.textContent).toContain('Azure App Service Blob');
+    expect(firstBadge.textContent).toContain('Healthy');
+    expect(firstBadge.classList).toContain('bg-success');
+  });
+
+  it('should apply bg-warning class for Maintenance status', () => {
+    const badges = fixture.debugElement.queryAll(By.css('.card .badge'));
+    const secondBadge = badges[1].nativeElement;
+
+    expect(secondBadge.textContent).toContain('Maintenance');
+    expect(secondBadge.classList).toContain('bg-warning');
+  });
+});
+
+==================
+//File: src/app/components/fetch-data-from-api/fetch-data-from-api.spec.ts
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FetchDataFromAPI } from './fetch-data-from-api';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient } from '@angular/common/http';
+import { By } from '@angular/platform-browser';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+
+describe('FetchDataFromAPI Component', () => {
+  let component: FetchDataFromAPI;
+  let fixture: ComponentFixture<FetchDataFromAPI>;
+  let httpMock: HttpTestingController;
+
+  const mockUsers = [
+    {
+      id: 1,
+      name: 'Leanne Graham',
+      username: 'Bret',
+      email: 'Sincere@april.biz',
+      company: { name: 'Romaguera-Crona' }
+    },
+    {
+      id: 2,
+      name: 'Ervin Howell',
+      username: 'Antonette',
+      email: 'Shanna@melissa.tv',
+      company: { name: 'Deckow-Crist' }
+    }
+  ];
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [FetchDataFromAPI],
+      providers: [
+        provideHttpClient(),
+        provideHttpClientTesting()
+      ]
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(FetchDataFromAPI);
+    component = fixture.componentInstance;
+    httpMock = TestBed.inject(HttpTestingController);
+  });
+
+  afterEach(() => {
+    httpMock.verify(); // Ensure no outstanding requests
+  });
+
+  it('should create component and start in loading state', () => {
+    expect(component).toBeTruthy();
+    expect(component.isLoading()).toBe(true);
+
+    // Trigger ngOnInit so HttpClient GET request is executed
+    fixture.detectChanges();
+
+    const req = httpMock.expectOne('https://jsonplaceholder.typicode.com/users');
+    req.flush([]);
+  });
+
+  it('should fetch users and render them upon successful HTTP response', () => {
+    fixture.detectChanges(); // Triggers ngOnInit
+
+    const req = httpMock.expectOne('https://jsonplaceholder.typicode.com/users');
+    expect(req.request.method).toBe('GET');
+
+    req.flush(mockUsers); // Emit mock data
+    fixture.detectChanges(); // Update template with signals state
+
+    expect(component.isLoading()).toBe(false);
+    expect(component.users().length).toBe(2);
+
+    const userCards = fixture.debugElement.queryAll(By.css('.user-card'));
+    expect(userCards.length).toBe(2);
+
+    const firstCardName = fixture.debugElement.query(By.css('.user-card h3')).nativeElement;
+    expect(firstCardName.textContent).toContain('Leanne Graham');
+  });
+
+  it('should handle HTTP error gracefully and set isLoading to false', () => {
+    vi.spyOn(console, 'error').mockImplementation(() => {}); // Suppress console error output during test
+    fixture.detectChanges();
+
+    const req = httpMock.expectOne('https://jsonplaceholder.typicode.com/users');
+    req.flush('Error loading users', { status: 500, statusText: 'Server Error' });
+
+    fixture.detectChanges();
+
+    expect(component.isLoading()).toBe(false);
+    expect(component.users().length).toBe(0);
+  });
+});
+
+=================
+
+PS C:\.......\angular-azure-A-oct26> ng test --watch=false
+
+=========================================================================================================================================================================
