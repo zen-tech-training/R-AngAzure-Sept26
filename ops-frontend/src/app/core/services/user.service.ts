@@ -8,15 +8,18 @@ import { Observable } from 'rxjs';
 // import { ApiService } from './api.service';
 import  ApiService  from './api.service';
 //import  MyApiService  from './api.service'; //Default export can be imported with its alias name, here we are using the alias name as MyApiService
-import { UserResponse } from '../models/user.model';
+import { UserResponse, CreateUser } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService extends ApiService { //extends MyApiService {
-//   createUser(userData: CreateUserRequest): Observable<UserResponse> {
-//     return this.http.post<UserResponse>(this.apiUrl, userData);
-//   }
+  
+  createUser(userData: CreateUser): Observable<UserResponse> {
+    // console.log("User creation step: ", userData);
+    return this.http.post<UserResponse>(this.apiUrl+ "/users", userData);
+    // return this.http.get<UserResponse>(`${this.apiUrl}/Users/1`);
+  }
 
   getUsers(): Observable<UserResponse[]> {
     console.log(this.funct());

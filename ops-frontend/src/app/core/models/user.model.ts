@@ -8,3 +8,10 @@ export interface UserResponse {
   phone: string;
   email: string;
 }
+
+export interface CreateUser{  
+  name: string;
+  username: string;
+  phone: string;
+  email: string;
+}
