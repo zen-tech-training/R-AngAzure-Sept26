@@ -1,0 +1,40 @@
+:host {
+  display: block;
+  padding: 2rem 1rem;
+}
+
+.registration-card {
+  max-width: 34rem;
+  margin: 0 auto;
+}
+
+mat-card-header {
+  margin-bottom: 1rem;
+}
+
+form {
+  display: grid;
+  gap: 0.5rem;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+button[type='submit'] {
+  justify-self: start;
+  min-height: 2.75rem;
+  margin-top: 0.5rem;
+}
+
+.form-message {
+  margin: 0;
+}
+
+.form-message--success {
+  color: #216e39;
+}
+
+.form-message--error {
+  color: #b3261e;
+}
