@@ -15,3 +15,7 @@ export interface CreateUser{
   phone: string;
   email: string;
 }
+
+export interface DeleteUser{
+  id: number;
+}

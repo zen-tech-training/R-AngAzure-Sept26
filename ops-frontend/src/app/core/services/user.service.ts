@@ -17,13 +17,21 @@ export class UserService extends ApiService { //extends MyApiService {
   
   createUser(userData: CreateUser): Observable<UserResponse> {
     // console.log("User creation step: ", userData);
-    return this.http.post<UserResponse>(this.apiUrl+ "/users", userData);
+    return this.http.post<UserResponse>(this.apiUrl+ "users", userData);
     // return this.http.get<UserResponse>(`${this.apiUrl}/Users/1`);
+    //Backend expects request.body
   }
 
   getUsers(): Observable<UserResponse[]> {
     console.log(this.funct());
-    return this.http.get<UserResponse[]>(`${this.apiUrl}/Users`);
+    return this.http.get<UserResponse[]>(`${this.apiUrl}Users`);
+  }
+
+  deleteUser(id: number):Observable<any>{
+    console.log("ID::::::", id)
+    return this.http.delete(`${this.apiUrl}users/{id}`)
+    //Backend expects request route parameter (Best option to send data to backend DELETE API)
+    //Backend expects request querystring
   }
 
 //   updateUser(id: number, userData: CreateUserRequest): Observable<UserResponse> {

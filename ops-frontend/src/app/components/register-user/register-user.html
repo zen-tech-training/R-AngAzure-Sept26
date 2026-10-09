@@ -8,9 +8,15 @@
     <form [formGroup]="registrationForm" (ngSubmit)="saveUser()" novalidate>
       <mat-form-field appearance="outline">
         <mat-label>Full name</mat-label>
-        <input matInput formControlName="name" autocomplete="name" />
+        <input matInput formControlName="name" autocomplete="name" />        
         @if (registrationForm.controls.name.hasError('required') && registrationForm.controls.name.touched) {
           <mat-error>Name is required.</mat-error>
+        }
+        @if (registrationForm.controls.name.hasError('minlength') && registrationForm.controls.name.touched) {
+          <mat-error>Name must be at least 2 characters long.</mat-error>
+        }
+        @if (registrationForm.controls.name.hasError('maxlength') && registrationForm.controls.name.touched) {
+          <mat-error>Name cannot exceed 8 characters.</mat-error>
         }
       </mat-form-field>
 
@@ -47,9 +53,9 @@
         <p class="form-message form-message--error" role="alert">{{ message }}</p>
       }
 
-      <button mat-flat-button type="submit" [disabled]="isSubmitting()" onclick="saveUser()">
+      <button mat-flat-button type="submit" [disabled]="isSubmitting()">
         {{ isSubmitting() ? 'Registering…' : 'Register user' }}
-      </button>
+      </button>   
     </form>
   </mat-card-content>
 </mat-card>

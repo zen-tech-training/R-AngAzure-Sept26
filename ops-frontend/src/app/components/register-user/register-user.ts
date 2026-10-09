@@ -27,13 +27,13 @@ export class RegisterUser {
   readonly submissionError = signal<string | null>(null);
 
   readonly registrationForm = new FormGroup({
-    name: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
-    username: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
-    email: new FormControl('', {
+    name: new FormControl('tom', { nonNullable: true, validators: [Validators.required, Validators.minLength(2), Validators.maxLength(8)] }),
+    username: new FormControl('tom', { nonNullable: true, validators: [Validators.required] }),
+    email: new FormControl('tom@ops.com', {
       nonNullable: true,
       validators: [Validators.required, Validators.email],
     }),
-    phone: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
+    phone: new FormControl('9911223344', { nonNullable: true, validators: [Validators.required] }),
   });
 
   saveUser(): void {

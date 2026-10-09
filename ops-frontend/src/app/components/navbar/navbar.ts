@@ -35,7 +35,8 @@ export class Navbar {
     // { label: 'Two-Way Binding', path: '/angular-basics/twoway-binding' },
     { label: 'Simple Material UI', path: '/smu' },
     { label: 'Get Data From API', path: '/gdfa' },
-    { label: 'Get Data From API Modular', path: '/gdfam' }
+    { label: 'Get Data From API Modular', path: '/gdfam' },
+    { label: 'Register User', path: '/register-user' }
   ];
 
   // 4th Item Sub-menu Options (Component Communication)
