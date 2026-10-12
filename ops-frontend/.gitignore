@@ -1,5 +1,19 @@
 # See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 
+# ==================================================
+# Backend (.NET) & OS Rules
+# ==================================================
+bin/
+obj/
+.vs/
+*.user
+*.dll
+*.exe
+.DS_Store
+Thumbs.db
+ops-backend/src/Ops.API/appsettings.json
+
+
 # Compiled output
 /dist
 /tmp

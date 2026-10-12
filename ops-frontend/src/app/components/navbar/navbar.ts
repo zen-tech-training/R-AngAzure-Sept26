@@ -33,6 +33,7 @@ export class Navbar {
     // { label: 'Property Binding', path: '/angular-basics/property-binding' },
     // { label: 'Event Binding', path: '/angular-basics/event-binding' },
     // { label: 'Two-Way Binding', path: '/angular-basics/twoway-binding' },
+    { label: 'One-Way / Two-Way Data Binding', path: '/angular-basics/oneway-twoway-binding' },
     { label: 'Simple Material UI', path: '/smu' },
     { label: 'Get Data From API', path: '/gdfa' },
     { label: 'Get Data From API Modular', path: '/gdfam' },
@@ -57,7 +58,7 @@ export class Navbar {
     { label: 'Get Put Delete Users', path: '/angular-basics/get-put-delete-users' },
     { label: 'Get Patch User', path: '/angular-basics/get-patch-user' },
     { label: 'PrimeNG Form', path: '/angular-basics/prime-ng-form' },
-    { label: 'One-Way / Two-Way', path: '/angular-basics/oneway-twoway' },
+    
     { label: 'NgFor Demo', path: '/angular-basics/ngfor' }
   ];
 
