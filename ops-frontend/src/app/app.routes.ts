@@ -2,10 +2,12 @@
 import { Routes } from '@angular/router';
 import { SimpleMaterialUI } from './components/simple-material-ui/simple-material-ui';
 import { App } from './app';
+import { Login } from './components/login/login';
 
 
 export const routes: Routes = [
     // { path: '', component: App },
+    { path: 'login', component: Login },
     { path: 'smu', component: SimpleMaterialUI },
     { path: 'gdfa', loadComponent: () => import('./components/get-data-from-api/get-data-from-api').then(m => m.GetDataFromApi)},
     { path: 'gdfam', loadComponent: () => import('./components/get-data-from-api-modular/get-data-from-api-modular').then(m => m.GetDataFromApiModular)},
