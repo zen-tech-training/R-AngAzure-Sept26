@@ -42,6 +42,7 @@ export class Navbar {
 
   // 4th Item Sub-menu Options (Component Communication)
   communicationLinks = [
+    { label: 'With @Input() RRR', path: '/angular-basics/parent-one' },
     { label: 'With @Input()', path: '/angular-basics/component-communication-Input' },
     { label: 'With @Output() & EventEmitter', path: '/angular-basics/component-communication-Output-EventEmitter' },
     { label: 'With ViewChild / Template Reference', path: '/angular-basics/component-communication-ViewChild' },
