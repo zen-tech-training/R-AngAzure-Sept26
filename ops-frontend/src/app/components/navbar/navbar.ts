@@ -50,7 +50,7 @@ export class Navbar {
 
   // Rest of the Main Menu Items
   basicsBottomLinks = [
-    { label: 'Pipes', path: '/angular-basics/pipe' },
+    { label: 'Pipe Demo', path: '/angular-basics/pipe-demo' },
     { label: 'RxJS Observables', path: '/angular-basics/rxjs-demo' },    
     { label: 'Life Cycle Methods', path: '/angular-basics/life-cycle' },
     { label: 'Add User', path: '/angular-basics/add-user' },

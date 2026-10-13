@@ -13,7 +13,7 @@ export const routes: Routes = [
     { path: 'gdfa', loadComponent: () => import('./components/get-data-from-api/get-data-from-api').then(m => m.GetDataFromApi)},
     { path: 'gdfam', loadComponent: () => import('./components/get-data-from-api-modular/get-data-from-api-modular').then(m => m.GetDataFromApiModular)},
     { path: 'register-user', loadComponent: () => import('./components/register-user/register-user').then(m => m.RegisterUser)},
-    { path: 'angular-basics', children: angularBasicsRoutes},
+    { path: 'angular-basics', children: angularBasicsRoutes}, //www.myweb.com/angular-basics
 
     { path: '**',    //It will handle all non matching routes
       redirectTo: '' //Redirect to root route

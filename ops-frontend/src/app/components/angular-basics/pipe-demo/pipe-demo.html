@@ -1,0 +1,89 @@
+{{ "rupesh" | titlecase }}<br>
+{{ "rupesh" | uppercase }}<br>
+{{ "RUPESH" | lowercase }}<br>
+{{ 0.25 | percent }}<br>
+{{ 0.25 | currency:'INR' }}<br>
+{{ 0.25 | currency:'USD' }}<br>
+{{ 0.25 | currency:'EUR' }}<br>
+
+{{ employees | json }}<br>
+
+
+<table mat-table [dataSource]="employees" class="mat-elevation-z8">
+
+    <!-- Original -->
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let emp">
+            {{ emp.name }}
+        </td>
+    </ng-container>
+
+    <!-- Uppercase Pipe -->
+    <ng-container matColumnDef="upper">
+        <th mat-header-cell *matHeaderCellDef>UpperCase</th>
+        <td mat-cell *matCellDef="let emp">
+            {{ emp.name | uppercase }}
+        </td>
+    </ng-container>
+
+    <!-- Lowercase Pipe -->
+    <ng-container matColumnDef="lower">
+        <th mat-header-cell *matHeaderCellDef>LowerCase</th>
+        <td mat-cell *matCellDef="let emp">
+            {{ emp.name | lowercase }}
+        </td>
+    </ng-container>
+
+    <!-- TitleCase Pipe -->
+    <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef>TitleCase</th>
+        <td mat-cell *matCellDef="let emp">
+            {{ emp.name | titlecase }}
+        </td>
+    </ng-container>
+
+    <!-- Currency Pipe -->
+    <ng-container matColumnDef="salary">
+        <th mat-header-cell *matHeaderCellDef>Currency</th>
+        <td mat-cell *matCellDef="let emp">
+            {{ emp.salary | currency:'INR' }}
+        </td>
+    </ng-container>
+
+    <!-- Percent Pipe -->
+    <ng-container matColumnDef="percent">
+        <th mat-header-cell *matHeaderCellDef>Percent</th>
+        <td mat-cell *matCellDef="let emp">
+            {{ emp.performance | percent }}
+        </td>
+    </ng-container>
+
+    <!-- Date Pipe -->
+    <ng-container matColumnDef="joinDate">
+        <th mat-header-cell *matHeaderCellDef>Date</th>
+        <td mat-cell *matCellDef="let emp">
+            {{ emp.joinDate | date:'dd/MM/yyyy' }}
+        </td>
+    </ng-container>
+
+    <!-- Slice Pipe -->
+    <ng-container matColumnDef="slice">
+        <th mat-header-cell *matHeaderCellDef>Slice</th>
+        <td mat-cell *matCellDef="let emp">
+            {{ emp.city | slice:0:3 }}
+        </td>
+    </ng-container>
+
+    <!-- Json Pipe -->
+    <ng-container matColumnDef="json">
+        <th mat-header-cell *matHeaderCellDef>JSON</th>
+        <td mat-cell *matCellDef="let emp">
+            <pre>{{ emp | json }}</pre>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+</table>
