@@ -10,9 +10,7 @@ export const angularBasicsRoutes: Routes = [
         import('./one-way-two-way-data-binding/one-way-two-way-data-binding').then((m) => m.OneWayTwoWayDataBinding),
   },
   { path: 'pipe-demo', component: PipeDemo },  //www.myweb.com/angular-basics/pipe-demo
-  { path: 'parent-one', 
-    loadComponent: () =>
-        import('./component-communication/parent-one/parent-one').then((m) => m.ParentOne),}
-    
-    // component: ParentOne },  //www.myweb.com/angular-basics/Parent-one
+  { path: 'parent-one', loadComponent: () => import('./component-communication/parent-one/parent-one').then((m) => m.ParentOne),},
+  { path: 'parent-two', loadComponent: () => import('./component-communication/parent-two/parent-two').then((m) => m.ParentTwo),},
+  { path: 'parent-three-signal', loadComponent: () => import('./component-communication/parent-three-signal/parent-three-signal').then((m) => m.ParentThreeSignal),}
 ];

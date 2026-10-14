@@ -1,0 +1,9 @@
+<div style="border: 2px dashed #007acc; padding: 15px; border-radius: 6px; margin-top: 15px;">
+      <h3>📥 Child Component Panel</h3>
+      
+      <!-- Read the input signal using function syntax () -->
+      <p><strong>Current User:</strong> {{ profile().name }}</p>
+      <p><strong>Role:</strong> {{ profile().role }}</p>
+
+      <button (click)="promoteUser()">Promote to Admin</button>
+    </div>

@@ -1,0 +1,8 @@
+<!-- 3. Listen to the custom event (onDelete) -->
+ <p>Parent Component (ParentTwo) is listening to the custom event emitted by the Child Component (ChildTwo). 
+ When the child emits the event, the parent handles it using the handleDelete method.</p>
+
+<app-child-two (onMyDelete)="handleDelete($event)"></app-child-two>
+
+<p> Parent Component End</p>
+<hr>

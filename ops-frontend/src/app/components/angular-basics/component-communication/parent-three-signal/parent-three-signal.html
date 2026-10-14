@@ -1,0 +1,13 @@
+<div style="border: 2px solid #333; padding: 20px; border-radius: 8px; max-width: 400px;">
+  <h2>🏠 Parent Component Panel</h2>
+  <p>Status: State is securely tracked via Signals</p>
+
+  <!-- 
+    [profile]: Passes the unwrapped signal value down 
+    (onRoleChange): Catches the payload event from the child
+  -->
+  <app-child-three-signal 
+    [profile]="currentUser()" 
+    (onRoleChange)="updateUserRole($event)">
+  </app-child-three-signal>
+</div>
