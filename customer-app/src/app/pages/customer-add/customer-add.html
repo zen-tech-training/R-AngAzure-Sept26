@@ -1,0 +1,31 @@
+<div class="container mt-4">
+
+<h2>Add Customer</h2>
+
+<form (ngSubmit)="save()">
+
+<input
+class="form-control mb-2"
+placeholder="Name"
+[(ngModel)]="customer.name"
+name="name">
+
+<input
+class="form-control mb-2"
+placeholder="Email"
+[(ngModel)]="customer.email"
+name="email">
+
+<input
+class="form-control mb-2"
+placeholder="Phone"
+[(ngModel)]="customer.phone"
+name="phone">
+
+<button class="btn btn-success">
+Save
+</button>
+
+</form>
+
+</div>

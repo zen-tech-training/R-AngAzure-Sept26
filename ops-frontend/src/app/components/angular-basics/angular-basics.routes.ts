@@ -2,6 +2,7 @@
 import { Routes } from '@angular/router';
 import { PipeDemo } from './pipe-demo/pipe-demo';
 import { ParentOne } from './component-communication/parent-one/parent-one';
+import { AddUser } from './add-user/add-user';
 
 export const angularBasicsRoutes: Routes = [
   {
@@ -10,7 +11,9 @@ export const angularBasicsRoutes: Routes = [
         import('./one-way-two-way-data-binding/one-way-two-way-data-binding').then((m) => m.OneWayTwoWayDataBinding),
   },
   { path: 'pipe-demo', component: PipeDemo },  //www.myweb.com/angular-basics/pipe-demo
+  { path: 'add-user', component: AddUser },
   { path: 'parent-one', loadComponent: () => import('./component-communication/parent-one/parent-one').then((m) => m.ParentOne),},
   { path: 'parent-two', loadComponent: () => import('./component-communication/parent-two/parent-two').then((m) => m.ParentTwo),},
-  { path: 'parent-three-signal', loadComponent: () => import('./component-communication/parent-three-signal/parent-three-signal').then((m) => m.ParentThreeSignal),}
+  { path: 'parent-three-signal', loadComponent: () => import('./component-communication/parent-three-signal/parent-three-signal').then((m) => m.ParentThreeSignal),},
+  
 ];

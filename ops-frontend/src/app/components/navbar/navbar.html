@@ -79,6 +79,15 @@
     <a mat-button routerLink="/login" routerLinkActive="active">
       <mat-icon>login</mat-icon> Login
     </a>
+    
+    <button disabled>
+      New Website Link 2
+    </button>
+
+    
+    <button [disabled]="isDisabled()">
+      New Website Link 2
+    </button>
 
     <!-- Theme Toggler Button -->
     <button
@@ -126,6 +135,10 @@
       <mat-icon>login</mat-icon>
       <span>Login</span>
     </a>
+
+    <button>
+      New Website Link
+    </button>
   </mat-menu>
 
   <!-- Submenu for Angular Basics in Mobile View -->

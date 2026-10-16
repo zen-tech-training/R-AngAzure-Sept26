@@ -27,6 +27,7 @@ import { MatDividerModule } from '@angular/material/divider';
 })
 export class Navbar {
   isGreyGreenTheme = signal<boolean>(false);
+  isDisabled =  signal(false);
 
   // Top 3 Items
   basicsTopLinks = [
@@ -37,7 +38,8 @@ export class Navbar {
     { label: 'Simple Material UI', path: '/smu' },
     { label: 'Get Data From API', path: '/gdfa' },
     { label: 'Get Data From API Modular', path: '/gdfam' },
-    { label: 'Register User', path: '/register-user' }
+    { label: 'Register User', path: '/register-user' },
+    { label: 'Add User', path: '/angular-basics/add-user' }
   ];
 
   // 4th Item Sub-menu Options (Component Communication)
@@ -54,7 +56,6 @@ export class Navbar {
     { label: 'Pipe Demo', path: '/angular-basics/pipe-demo' },
     { label: 'RxJS Observables', path: '/angular-basics/rxjs-demo' },    
     { label: 'Life Cycle Methods', path: '/angular-basics/life-cycle' },
-    { label: 'Add User', path: '/angular-basics/add-user' },
     { label: 'Get All Users', path: '/angular-basics/get-all-users' },
     { label: 'Get Put Delete Users', path: '/angular-basics/get-put-delete-users' },
     { label: 'Get Patch User', path: '/angular-basics/get-patch-user' },
@@ -109,6 +110,7 @@ export class Navbar {
 
 export default class ThirdNavbar{  //Default export
 
+  
 
 }
 

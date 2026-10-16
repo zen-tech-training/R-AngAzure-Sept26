@@ -1,0 +1,524 @@
+Since you're using latest Angular (standalone) and want a simple Customer CRUD using json-server + Bootstrap + Signals, let's build it with a clean structure that follows modern Angular practices without adding NgRx, Auth, Guards, Interceptors, or other enterprise features.
+
+Architecture
+customer-app
+│
+├── src
+│   ├── app
+│   │   ├── models
+│   │   │   └── customer.model.ts
+│   │   │
+│   │   ├── services
+│   │   │   └── customer.service.ts
+│   │   │
+│   │   ├── pages
+│   │   │   ├── customer-list
+│   │   │   ├── customer-add
+│   │   │   └── customer-edit
+│   │   │
+│   │   ├── app.routes.ts
+│   │   └── app.config.ts
+│   │
+│   └── environments
+│
+└── db.json
+
+Step 1: Create Angular Project
+ng new customer-app --routing --style=css
+
+
+Move into project:
+
+cd customer-app
+
+Step 2: Install Bootstrap
+npm install bootstrap
+
+
+Open:
+
+angular.json
+
+
+Add Bootstrap CSS:
+
+"styles": [
+  "node_modules/bootstrap/dist/css/bootstrap.min.css",
+  "src/styles.css"
+]
+
+Step 3: Install json-server
+npm install json-server --save-dev
+
+
+Create:
+
+db.json
+
+{
+  "customers": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "email": "john@gmail.com",
+      "phone": "9999999999"
+    },
+    {
+      "id": 2,
+      "name": "Smith",
+      "email": "smith@gmail.com",
+      "phone": "8888888888"
+    }
+  ]
+}
+
+Step 4: Add Script
+
+Open:
+
+package.json
+
+
+Add:
+
+"scripts": {
+  "start": "ng serve",
+  "json-server": "json-server --watch db.json --port 3000"
+}
+
+
+Run:
+
+Terminal-1
+
+npm run json-server
+
+
+Terminal-2
+
+ng serve
+
+
+API:
+
+GET    http://localhost:3000/customers
+POST   http://localhost:3000/customers
+PUT    http://localhost:3000/customers/1
+DELETE http://localhost:3000/customers/1
+
+Step 5: Generate Components
+ng g c pages/customer-list --standalone
+
+ng g c pages/customer-add --standalone
+
+ng g c pages/customer-edit --standalone
+
+ng g s services/customer
+
+Step 6: Create Model
+customer.model.ts
+export interface Customer {
+  id: number;
+  name: string;
+  email: string;
+  phone: string;
+}
+
+Step 7: Configure Routes
+app.routes.ts
+import { Routes } from '@angular/router';
+
+export const routes: Routes = [
+  {
+    path: '',
+    redirectTo: 'customers',
+    pathMatch: 'full'
+  },
+  {
+    path: 'customers',
+    loadComponent: () =>
+      import('./pages/customer-list/customer-list.component')
+      .then(m => m.CustomerListComponent)
+  },
+  {
+    path: 'add-customer',
+    loadComponent: () =>
+      import('./pages/customer-add/customer-add.component')
+      .then(m => m.CustomerAddComponent)
+  },
+  {
+    path: 'edit-customer/:id',
+    loadComponent: () =>
+      import('./pages/customer-edit/customer-edit.component')
+      .then(m => m.CustomerEditComponent)
+  }
+];
+
+Step 8: Configure HttpClient
+app.config.ts
+import { ApplicationConfig } from '@angular/core';
+import { provideRouter } from '@angular/router';
+import { provideHttpClient } from '@angular/common/http';
+
+import { routes } from './app.routes';
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideRouter(routes),
+    provideHttpClient()
+  ]
+};
+
+Step 9: Create Service Using Signals
+customer.service.ts
+import { Injectable, signal } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Customer } from '../models/customer.model';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class CustomerService {
+
+  private apiUrl = 'http://localhost:3000/customers';
+
+  customers = signal<Customer[]>([]);
+
+  constructor(private http: HttpClient) {
+  }
+
+  loadCustomers() {
+    this.http.get<Customer[]>(this.apiUrl)
+      .subscribe(data => {
+        this.customers.set(data);
+      });
+  }
+
+  getCustomerById(id: number) {
+    return this.http.get<Customer>(
+      `${this.apiUrl}/${id}`
+    );
+  }
+
+  addCustomer(customer: Customer) {
+    return this.http.post<Customer>(
+      this.apiUrl,
+      customer
+    );
+  }
+
+  updateCustomer(id: number, customer: Customer) {
+    return this.http.put(
+      `${this.apiUrl}/${id}`,
+      customer
+    );
+  }
+
+  deleteCustomer(id: number) {
+    return this.http.delete(
+      `${this.apiUrl}/${id}`
+    );
+  }
+}
+
+Step 10: Customer List Component
+customer-list.component.ts
+import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+
+import { CustomerService } from '../../services/customer.service';
+
+@Component({
+  selector: 'app-customer-list',
+  standalone: true,
+  imports: [CommonModule, RouterModule],
+  templateUrl: './customer-list.component.html'
+})
+export class CustomerListComponent {
+
+  customerService = inject(CustomerService);
+
+  constructor() {
+    this.customerService.loadCustomers();
+  }
+
+  deleteCustomer(id: number) {
+
+    if (confirm('Delete customer?')) {
+
+      this.customerService
+        .deleteCustomer(id)
+        .subscribe(() => {
+
+          this.customerService.loadCustomers();
+
+        });
+    }
+  }
+}
+
+customer-list.component.html
+<div class="container mt-4">
+
+    <h2>Customer List</h2>
+
+    <a
+      routerLink="/add-customer"
+      class="btn btn-primary mb-3">
+      Add Customer
+    </a>
+
+    <table class="table table-bordered">
+
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @for(item of customerService.customers(); track item.id){
+
+            <tr>
+
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.email}}</td>
+                <td>{{item.phone}}</td>
+
+                <td>
+
+                    <a
+                    [routerLink]="['/edit-customer',item.id]"
+                    class="btn btn-warning btn-sm me-2">
+                    Edit
+                    </a>
+
+                    <button
+                    class="btn btn-danger btn-sm"
+                    (click)="deleteCustomer(item.id)">
+                    Delete
+                    </button>
+
+                </td>
+
+            </tr>
+
+            }
+
+        </tbody>
+
+    </table>
+
+</div>
+
+Step 11: Customer Add Component
+customer-add.component.ts
+import { Component, inject } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+
+import { CustomerService } from '../../services/customer.service';
+
+@Component({
+  selector: 'app-customer-add',
+  standalone: true,
+  imports: [FormsModule],
+  templateUrl: './customer-add.component.html'
+})
+export class CustomerAddComponent {
+
+  customerService = inject(CustomerService);
+
+  router = inject(Router);
+
+  customer = {
+    id: 0,
+    name: '',
+    email: '',
+    phone: ''
+  };
+
+  save() {
+
+    this.customerService
+      .addCustomer(this.customer)
+      .subscribe(() => {
+
+        this.router.navigate(['/customers']);
+
+      });
+  }
+}
+
+customer-add.component.html
+<div class="container mt-4">
+
+<h2>Add Customer</h2>
+
+<form (ngSubmit)="save()">
+
+<input
+class="form-control mb-2"
+placeholder="Name"
+[(ngModel)]="customer.name"
+name="name">
+
+<input
+class="form-control mb-2"
+placeholder="Email"
+[(ngModel)]="customer.email"
+name="email">
+
+<input
+class="form-control mb-2"
+placeholder="Phone"
+[(ngModel)]="customer.phone"
+name="phone">
+
+<button class="btn btn-success">
+Save
+</button>
+
+</form>
+
+</div>
+
+Step 12: Customer Edit Component
+customer-edit.component.ts
+import { Component, inject } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { CustomerService } from '../../services/customer.service';
+
+@Component({
+  selector: 'app-customer-edit',
+  standalone: true,
+  imports: [FormsModule],
+  templateUrl: './customer-edit.component.html'
+})
+export class CustomerEditComponent {
+
+  customerService = inject(CustomerService);
+
+  route = inject(ActivatedRoute);
+
+  router = inject(Router);
+
+  customer: any = {};
+
+  ngOnInit() {
+
+    const id = Number(
+      this.route.snapshot.paramMap.get('id')
+    );
+
+    this.customerService
+      .getCustomerById(id)
+      .subscribe(res => {
+
+        this.customer = res;
+
+      });
+  }
+
+  update() {
+
+    this.customerService
+      .updateCustomer(
+        this.customer.id,
+        this.customer
+      )
+      .subscribe(() => {
+
+        this.router.navigate(['/customers']);
+
+      });
+  }
+}
+
+customer-edit.component.html
+<div class="container mt-4">
+
+<h2>Edit Customer</h2>
+
+<form (ngSubmit)="update()">
+
+<input
+class="form-control mb-2"
+[(ngModel)]="customer.name"
+name="name">
+
+<input
+class="form-control mb-2"
+[(ngModel)]="customer.email"
+name="email">
+
+<input
+class="form-control mb-2"
+[(ngModel)]="customer.phone"
+name="phone">
+
+<button class="btn btn-primary">
+Update
+</button>
+
+</form>
+
+</div>
+
+Step 13: App Component
+app.component.ts
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [RouterOutlet],
+  template: `
+      <router-outlet />
+  `
+})
+export class AppComponent {
+}
+
+Run Application
+
+Start json-server:
+
+npm run json-server
+
+
+Start Angular:
+
+ng serve -o
+
+
+Navigate:
+
+http://localhost:4200
+
+
+Features:
+
+✅ Standalone Components
+ ✅ Angular Latest Control Flow (@for)
+ ✅ Bootstrap UI
+ ✅ Signal State Management
+ ✅ HttpClient API Calls
+ ✅ json-server Backend
+ ✅ Customer List
+ ✅ Add Customer
+ ✅ Edit Customer
+ ✅ Delete Customer
+ ✅ Lazy Loaded Routes
+
+This is the cleanest Angular 20+ CRUD structure for learning Signals before moving later to Reactive Forms, RxJS operators, NgRx, interceptors, and real ASP.NET Core APIs.

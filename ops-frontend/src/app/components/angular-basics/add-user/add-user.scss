@@ -1,0 +1,52 @@
+/* ops-frontend/src/app/component/angular-basics/add-user/add-user.scss */
+
+.add-user-container {
+  padding: 1.5rem;
+  display: flex;
+  justify-content: center;
+
+  .user-card {
+    width: 100%;
+    max-width: 550px;
+    background-color: var(--card-bg, #ffffff);
+    border-radius: 8px;
+
+    .user-form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .full-width {
+      width: 100%;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 0.5rem;
+    }
+
+    .response-card {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      background: rgba(0, 0, 0, 0.04);
+      border-left: 4px solid #4caf50;
+      border-radius: 4px;
+
+      h4 {
+        margin: 0 0 0.5rem 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      pre {
+        margin: 0;
+        font-family: monospace;
+        font-size: 0.85rem;
+      }
+    }
+  }
+}
